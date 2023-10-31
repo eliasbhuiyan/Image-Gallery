@@ -13,7 +13,6 @@ body{
 }
  
 #item-0 {
-  background-color: #87BB5D;
   grid-row-start: 1;
   grid-column-start: 1;
   grid-row-end: 3;
@@ -22,7 +21,6 @@ body{
   border-radius: 10px;
 }
 #item-1 {
-  background-color: #FC679B;
   grid-row-start: 1;
   grid-column-start: 3;
   grid-row-end: 2;
@@ -40,7 +38,6 @@ body{
   border-radius: 10px;
 }
 #item-3 {
-  background-color: #5BDDFE; 
   grid-row-start: 1;
   grid-column-start: 5;
   grid-row-end: 2;
@@ -49,7 +46,6 @@ body{
   border-radius: 10px;
 }
 #item-4 {
-  background-color: #C955E6; 
   grid-row-start: 2;
   grid-column-start: 5;
   grid-row-end: 3;
@@ -58,7 +54,6 @@ body{
   border-radius: 10px;
 }
 #item-5 {
-  background-color: #9ED55B; 
   grid-row-start: 2;
   grid-column-start: 4;
   grid-row-end: 3;
@@ -67,7 +62,6 @@ body{
   border-radius: 10px;
 }
 #item-6 {
-  background-color: #97D59B; 
   grid-row-start: 2;
   grid-column-start: 3;
   grid-row-end: 3;
@@ -76,7 +70,6 @@ body{
   border-radius: 10px;
 }
 #item-7 {
-  background-color: #AB69A8; 
   grid-row-start: 3;
   grid-column-start: 3;
   grid-row-end: 4;
@@ -85,7 +78,6 @@ body{
   border-radius: 10px;
 }
 #item-8 {
-  background-color: #966C5F; 
   grid-row-start: 3;
   grid-column-start: 4;
   grid-row-end: 4;
@@ -94,7 +86,6 @@ body{
   border-radius: 10px;
 }
 #item-9 {
-  background-color: #AB55B7; 
   grid-row-start: 3;
   grid-column-start: 5;
   grid-row-end: 4;
@@ -103,7 +94,6 @@ body{
   border-radius: 10px;
 }
 #item-10 {
-  background-color: #EFDD59; 
   grid-row-start: 3;
   grid-column-start: 2;
   grid-row-end: 4;
@@ -112,7 +102,6 @@ body{
   border-radius: 10px;
 }
 #item-11 {
-  background-color: #BA5A9C; 
   grid-row-start: 3;
   grid-column-start: 1;
   grid-row-end: 4;

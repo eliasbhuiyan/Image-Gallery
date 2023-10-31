@@ -1,5 +1,5 @@
 import Image from 'next/image'
-
+import { BsCardImage } from 'react-icons/bs';
 export default function Home() {
   return (
     <main>
@@ -46,7 +46,11 @@ export default function Home() {
             <Image src="/image-11.webp" width={100} height={100} layout='responsive'/>
           </div>
           <div id="item-11">
-            <input className='w-full h-full' type="file"/>
+            <label className='w-full h-full flex flex-col justify-center items-center font-bold'>
+                <BsCardImage/>
+                <p>Add Images</p>
+                <input className='opacity-0' type="file"/>
+            </label>
           </div>
         </div>
         </div>
