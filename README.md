@@ -1,6 +1,3 @@
-
-# Image Gallery
-
 # Image Gallery
 
 A responsive image gallery created using NextJS, featuring reordering, deleting multiple images, and setting a feature image. This gallery provides a smooth user experience and a visually appealing layout.
