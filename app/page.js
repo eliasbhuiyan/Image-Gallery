@@ -22,12 +22,12 @@ export default function Home() {
   const [checkboxState, setCheckboxState] = useState({});
 
   // Get images from localStorage
-  // useEffect(() => {
-  //   const storedImages = JSON.parse(localStorage.getItem('galleryImages'));
-  //   if (storedImages) {
-  //     setImages(storedImages);
-  //   }
-  // }, []); 
+  useEffect(() => {
+    const storedImages = JSON.parse(localStorage.getItem('galleryImages'));
+    if (storedImages) {
+      setImages(storedImages);
+    }
+  }, []); 
 // Drag Index
   const handleDragStart = (e, index) => {
     e.dataTransfer.setData('text/plain', index);
