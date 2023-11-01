@@ -12,4 +12,4 @@ A responsive image gallery created using NextJS, featuring reordering, deleting 
 
 ## Live Demo
 
-You can view a live demo of the Image Gallery [here](#https://main--elegant-narwhal-7aa883.netlify.app).
+You can view a live demo of the Image Gallery https://main--elegant-narwhal-7aa883.netlify.app.
