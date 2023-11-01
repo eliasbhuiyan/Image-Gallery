@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BsCardImage } from 'react-icons/bs';
 import { AiFillDelete, AiFillCheckCircle } from 'react-icons/ai';
 export default function Home() { 
@@ -20,45 +20,36 @@ export default function Home() {
   const [selectedImages, setSelectedImages] = useState([]);
   const [draggedIndex, setDraggedIndex] = useState(null);
   const [checkboxState, setCheckboxState] = useState({});
+
+  // Get images from localStorage
   useEffect(() => {
-    // Load images from local storage on component mount
     const storedImages = JSON.parse(localStorage.getItem('galleryImages'));
     if (storedImages) {
       setImages(storedImages);
     }
   }, []); 
- 
-
+// Drag Index
   const handleDragStart = (e, index) => {
     e.dataTransfer.setData('text/plain', index);
     setDraggedIndex(index);
   };
-
+// Dragging the Image
   const handleDragOver = (e, index) => {
     e.preventDefault();
-    
-    if (draggedIndex === null || index === draggedIndex) {
-      return;
-    }
-    
+
     const imagesCopy = [...images];
     const draggedImage = imagesCopy[draggedIndex];
-    
     imagesCopy.splice(draggedIndex, 1);
     imagesCopy.splice(index, 0, draggedImage);
-    
+
     setImages(imagesCopy);
     setDraggedIndex(index);
   };
-  
-  const handleDrop = (e) => {
-    e.preventDefault();
-  };
-  
+//  Finding Existing Image
   const isImageExists = (newImage) => {
     return images.some((image) => image === newImage);
   };
-  
+  // Upload Random Image as user want
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -67,22 +58,21 @@ export default function Home() {
       reader.onload = (e) => {
         const newImage = e.target.result;
         console.log("newImage",[newImage]);
-        
+        // Uploading Image and giving alart for Existing Image
         if (!isImageExists(newImage)) {
           setImages((prevImages) => [...prevImages, newImage]);
           const updatedImages = [...images, newImage];
+          // Also store Image in localStorage
           localStorage.setItem('galleryImages', JSON.stringify(updatedImages));
         } else {
           alert('Image already exists in the gallery.');
         }
       };
-      
       reader.readAsDataURL(file);
     }
   };
-  
+  // Selecting Images
   const handleImageSelect = (image, isChecked) => {
-
     if (isChecked) {
       setSelectedImages([...selectedImages, image]);
     } else {
@@ -96,7 +86,7 @@ export default function Home() {
         [image]: isChecked,
       }));
     };
-
+    // Deleting Images
   const handleDeleteSelected = () => {
     const updatedImages = images.filter(
       (image) => !selectedImages.includes(image)
@@ -105,7 +95,6 @@ export default function Home() {
     setSelectedImages([]);
     localStorage.setItem('galleryImages', JSON.stringify(updatedImages))
   };
-
   return (
     <main className='w-3/5 m-auto mt-5 rounded-xl bg-white'>
       <div className='p-4 border-b-4 border-slate-200'>
@@ -131,8 +120,6 @@ export default function Home() {
           key={index}
           className={`image_items ${selectedImages.includes(image) && 'selected_img'} ${index === draggedIndex ? 'dragging' : ''}`}
           onDragOver={(e) => handleDragOver(e, index)}
-          onDrop={handleDrop}
-          
         >
              <div className='relative'
               draggable

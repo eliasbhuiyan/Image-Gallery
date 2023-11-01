@@ -16,7 +16,7 @@ body{
   @apply p-5 m-auto grid grid-rows-3 grid-cols-5 gap-5 h-full relative;
 }
 .image_items {
-  @apply relative border border-gray-300 p-4 text-center overflow-hidden
+  @apply relative transition duration-500 border border-gray-300 p-4 text-center overflow-hidden
   after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black 
   after:bg-opacity-40 after:invisible after:opacity-0 after:duration-300 after:transition after:pointer-events-none;
 }
@@ -28,7 +28,7 @@ body{
  @apply visible opacity-100;
 }
 .image_items img{
-  @apply transition-all cursor-pointer;
+  @apply transition duration-500 cursor-pointer;
 }
 .image_items.dragging img{
   transform: scale(1.1);
