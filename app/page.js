@@ -2,25 +2,24 @@
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react';
 import { BsCardImage } from 'react-icons/bs';
-export default function Home() {
-  // const [images, setImages] = useState([
-    //   '/image-1.webp',
-    //   '/image-2.webp',
-    //   '/image-3.webp',
-  //   '/image-4.webp',
-  //   '/image-5.webp',
-  //   '/image-6.webp',
-  //   '/image-7.webp',
-  //   '/image-8.webp',
-  //   '/image-9.webp',
-  //   '/image-10.webp',
-  //   '/image-11.webp',
-  // ]);
-  
-  const [images, setImages] = useState([]);
+import { AiFillDelete, AiFillCheckCircle } from 'react-icons/ai';
+export default function Home() { 
+  const [images, setImages] = useState([
+    '/image-1.webp',
+    '/image-2.webp',
+    '/image-3.webp',
+    '/image-4.webp',
+    '/image-5.webp',
+    '/image-6.webp',
+    '/image-7.webp',
+    '/image-8.webp',
+    '/image-9.webp',
+    '/image-10.webp',
+    '/image-11.webp',
+  ]);
   const [selectedImages, setSelectedImages] = useState([]);
   const [draggedIndex, setDraggedIndex] = useState(null);
-  console.log("images",images);
+  const [checkboxState, setCheckboxState] = useState({});
   useEffect(() => {
     // Load images from local storage on component mount
     const storedImages = JSON.parse(localStorage.getItem('galleryImages'));
@@ -83,15 +82,20 @@ export default function Home() {
   };
   
   const handleImageSelect = (image, isChecked) => {
+
     if (isChecked) {
       setSelectedImages([...selectedImages, image]);
     } else {
       const updatedSelectedImages = selectedImages.filter(
         (selectedImage) => selectedImage !== image
-      );
-      setSelectedImages(updatedSelectedImages);
-    }
-  };
+        );
+        setSelectedImages(updatedSelectedImages);
+      }
+      setCheckboxState((prevState) => ({
+        ...prevState,
+        [image]: isChecked,
+      }));
+    };
 
   const handleDeleteSelected = () => {
     const updatedImages = images.filter(
@@ -99,36 +103,58 @@ export default function Home() {
     );
     setImages(updatedImages);
     setSelectedImages([]);
+    localStorage.setItem('galleryImages', JSON.stringify(updatedImages))
   };
 
   return (
-    <main className='w-3/5 m-auto bg-white'>
-      <div className='p-4 border-b-4 border-slate-200 flex justify-between'>
-        <h2>Gallery</h2>
-        <button onClick={handleDeleteSelected}>Delete Selected</button>
+    <main className='w-3/5 m-auto mt-5 rounded-xl bg-white'>
+      <div className='p-4 border-b-4 border-slate-200'>
+        {
+          selectedImages.length > 0
+          ?
+           <div className='flex justify-between items-center'>
+             <h2 className='heading'>
+              <AiFillCheckCircle/>
+                <span>{selectedImages.length}</span>
+               Images Selected</h2>
+             <button onClick={handleDeleteSelected} class="delete_btn">
+             <AiFillDelete className='blt_icon'/>
+            </button>
+           </div>
+          :
+          <h2 className='heading'>Gallery</h2>
+        }
         </div>
       <div className="gallery_main">
       {images.map((image, index) => (
         <div
           key={index}
-          className={`image_items ${index === draggedIndex ? 'dragging' : ''}`}
+          className={`image_items ${selectedImages.includes(image) && 'selected_img'} ${index === draggedIndex ? 'dragging' : ''}`}
           onDragOver={(e) => handleDragOver(e, index)}
           onDrop={handleDrop}
+          
         >
-          <input
-          className='checkbox'
-            type="checkbox"
-            onChange={(e) => handleImageSelect(image, e.target.checked)}
-          />
-          <Image
-          width={100}
-          height={100}
-          layout='responsive'
-            src={image}
-            alt={`Image ${index + 1}`}
-            draggable
-            onDragStart={(e) => handleDragStart(e, index)}
-          />
+             <div className='relative'
+              draggable
+              onDragStart={(e) => handleDragStart(e, index)}
+             >
+             <input
+              className='checkbox'
+                type="checkbox"
+                onChange={(e) => handleImageSelect(image, e.target.checked)}
+                checked={checkboxState[image] || false}
+                id={`${image}`}
+              />
+             <label htmlFor={`${image}`}>
+              <Image
+              width={100}
+              height={100}
+              layout='responsive'
+              src={image}
+              alt={`Image ${index + 1}`}
+              />
+              </label>
+             </div>
         </div>
       ))}
       <div className='upload_btn'>

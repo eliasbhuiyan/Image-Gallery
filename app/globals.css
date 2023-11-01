@@ -5,20 +5,30 @@
 body{
   @apply bg-slate-100
 }
+.heading{
+  @apply flex items-center font-semibold text-lg gap-1
+}
+.heading svg{
+  @apply text-2xl text-green-700
+}
+
 .gallery_main {
   @apply p-5 m-auto grid grid-rows-3 grid-cols-5 gap-5 h-full relative;
 }
 .image_items {
-  @apply border relative border-gray-300 p-4 text-center overflow-hidden
+  @apply relative border border-gray-300 p-4 text-center overflow-hidden
   after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black 
   after:bg-opacity-40 after:invisible after:opacity-0 after:duration-300 after:transition after:pointer-events-none;
 }
-
+.selected_img{
+  @apply  before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-black 
+  before:bg-opacity-40 before:pointer-events-none before:z-50
+}
 .image_items:hover::after{
  @apply visible opacity-100;
 }
 .image_items img{
-  @apply transition-all;
+  @apply transition-all cursor-pointer;
 }
 .image_items.dragging img{
   transform: scale(1.1);
@@ -27,11 +37,68 @@ body{
   @apply col-start-1 col-end-3 row-start-1 row-end-3 bg-emerald-500 border-4 border-emerald-700;
 }
 .checkbox{
-  @apply absolute top-2 left-2 bg-white z-50;
+  @apply absolute top-2 left-2 bg-white z-50 invisible opacity-0 transition-all;
+}
+.image_items:hover .checkbox{
+  @apply visible opacity-100
 }
 .upload_btn{
   @apply border-dotted border-2 border-slate-600;
 }
 .upload_label{
   @apply w-full h-full cursor-pointer gap-4 font-semibold text-lg flex flex-col justify-center items-center;
+}
+
+
+
+
+.delete_btn{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: red;
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: .3s;
+  overflow: hidden;
+  position: relative;
+  font-size: 15px;
+  transition-duration: .3s;
+  color: white;
+}
+
+
+.delete_btn:hover {
+  width: 100px;
+  border-radius: 50px;
+  transition-duration: .3s;
+  background-color: rgb(255, 69, 69);
+  align-items: center;
+}
+
+.delete_btn:hover .blt_icon {
+  font-size: 30px;
+  transition-duration: .3s;
+  transform: translateY(60%);
+}
+
+.delete_btn::before {
+  position: absolute;
+  top: -30px;
+  content: "Delete";
+  color: white;
+  transition-duration: .3s;
+  font-size: 2px;
+}
+
+.delete_btn:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(30px);
+  transition-duration: .3s;
 }
