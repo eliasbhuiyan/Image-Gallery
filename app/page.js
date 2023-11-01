@@ -107,11 +107,11 @@ export default function Home() {
         <h2>Gallery</h2>
         <button onClick={handleDeleteSelected}>Delete Selected</button>
         </div>
-      <div className="image-gallery">
+      <div className="gallery_main">
       {images.map((image, index) => (
         <div
           key={index}
-          className={`image-container relative ${index === draggedIndex ? 'dragging' : ''}`}
+          className={`image_items ${index === draggedIndex ? 'dragging' : ''}`}
           onDragOver={(e) => handleDragOver(e, index)}
           onDrop={handleDrop}
         >
@@ -131,8 +131,8 @@ export default function Home() {
           />
         </div>
       ))}
-      <div className='border-dotted border-2 border-slate-600'>
-        <label className='w-full h-full cursor-pointer gap-4 font-semibold text-lg flex flex-col justify-center items-center'>
+      <div className='upload_btn'>
+        <label className='upload_label'>
           <BsCardImage/>
           Add Images
         <input
