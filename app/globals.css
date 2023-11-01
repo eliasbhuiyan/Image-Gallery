@@ -13,7 +13,7 @@ body{
 }
 
 .gallery_main {
-  @apply p-5 m-auto grid grid-rows-3 grid-cols-5 gap-5 h-full relative;
+  @apply p-5 m-auto grid grid-rows-2 grid-cols-3 md:grid-rows-3 md:grid-cols-5 gap-5 h-full relative;
 }
 .image_items {
   @apply relative transition duration-500 border border-gray-300 p-4 text-center overflow-hidden
@@ -46,59 +46,18 @@ body{
   @apply border-dotted border-2 border-slate-600;
 }
 .upload_label{
-  @apply w-full h-full cursor-pointer gap-4 font-semibold text-lg flex flex-col justify-center items-center;
+  @apply w-full h-full cursor-pointer gap-4 font-semibold text-xs md:text-sm lg:text-base flex flex-col justify-center items-center;
 }
-
-
-
 
 .delete_btn{
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: red;
-  border: none;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
-  cursor: pointer;
-  transition-duration: .3s;
-  overflow: hidden;
-  position: relative;
-  font-size: 15px;
-  transition-duration: .3s;
-  color: white;
+  @apply w-8 h-8 rounded-full bg-red-600 border-none font-semibold flex items-center justify-center shadow-md cursor-pointer transition-all overflow-hidden relative text-white text-base
+  before:absolute before:-top-8 before:content-['Delete'] before:text-white before:transition-all before:text-[2px];
 }
 
-
 .delete_btn:hover {
-  width: 100px;
-  border-radius: 50px;
-  transition-duration: .3s;
-  background-color: rgb(255, 69, 69);
-  align-items: center;
+  @apply w-24 rounded-full transition-all bg-red-600 items-center before:text-sm before:opacity-100 before:translate-y-[30px] before:transition-all;
 }
 
 .delete_btn:hover .blt_icon {
-  font-size: 30px;
-  transition-duration: .3s;
-  transform: translateY(60%);
-}
-
-.delete_btn::before {
-  position: absolute;
-  top: -30px;
-  content: "Delete";
-  color: white;
-  transition-duration: .3s;
-  font-size: 2px;
-}
-
-.delete_btn:hover::before {
-  font-size: 13px;
-  opacity: 1;
-  transform: translateY(30px);
-  transition-duration: .3s;
+  @apply text-3xl transition-all translate-y-[60%];
 }

@@ -22,12 +22,12 @@ export default function Home() {
   const [checkboxState, setCheckboxState] = useState({});
 
   // Get images from localStorage
-  useEffect(() => {
-    const storedImages = JSON.parse(localStorage.getItem('galleryImages'));
-    if (storedImages) {
-      setImages(storedImages);
-    }
-  }, []); 
+  // useEffect(() => {
+  //   const storedImages = JSON.parse(localStorage.getItem('galleryImages'));
+  //   if (storedImages) {
+  //     setImages(storedImages);
+  //   }
+  // }, []); 
 // Drag Index
   const handleDragStart = (e, index) => {
     e.dataTransfer.setData('text/plain', index);
@@ -96,7 +96,7 @@ export default function Home() {
     localStorage.setItem('galleryImages', JSON.stringify(updatedImages))
   };
   return (
-    <main className='w-3/5 m-auto mt-5 rounded-xl bg-white'>
+    <main className='w-auto md:w-3/4 lg:w-3/5 mx-4 md:m-auto mt-5 rounded-xl bg-white'>
       <div className='p-4 border-b-4 border-slate-200'>
         {
           selectedImages.length > 0
